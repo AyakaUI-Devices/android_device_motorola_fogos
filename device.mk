@@ -7,6 +7,11 @@ PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1600
+TARGET_SCREEN_WIDTH := 720
+
+# Inherit from motorola sm6375-common
 $(call inherit-product, device/motorola/sm6375-common/common.mk)
 
 # Dalvik heap, as on the tested fogos builds
