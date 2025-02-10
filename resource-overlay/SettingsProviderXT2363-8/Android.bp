@@ -1,0 +1,5 @@
+runtime_resource_overlay {
+    name: "SettingsProviderResXT2363-8",
+    sdk_version: "current",
+    vendor: true
+}

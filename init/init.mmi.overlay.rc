@@ -123,6 +123,18 @@ on init
     insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/chipone_tddi_v2_mmi.ko
     insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/ilitek_v3_mmi.ko
 
+on init && property:ro.product.is_prc=true && property:ro.vendor.hw.storage=256GB
+    setprop ro.vendor.product.display "moto g34 S"
+    setprop ro.vendor.product.display.plain_text "moto g34 S"
+
+on init && property:ro.product.is_prc=true && property:ro.vendor.hw.storage=128GB
+    setprop ro.vendor.product.display "moto g34"
+    setprop ro.vendor.product.display.plain_text "moto g34"
+
+on property:ro.boot.hardware.sku="XT2363-8"
+    setprop bluetooth.device.default_name "moto g45 5G"
+    setprop vendor.usb.product_string "moto g45 5G"
+
 on property:dev.bootcomplete=1 && property:ro.vendor.hw.ram=4GB
     write /sys/block/dm-0/queue/read_ahead_kb 128
     write /sys/block/dm-1/queue/read_ahead_kb 128

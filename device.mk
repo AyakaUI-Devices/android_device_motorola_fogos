@@ -29,6 +29,8 @@ PRODUCT_PACKAGES += \
     ProductFrameworksResDevice \
     SystemUIResDevice \
     TurboPowerOverlay \
+    SettingsOverlayXT2363-8 \
+    SettingsProviderResXT2363-8 \
     WifiResDevice \
     WifiResDeviceXT2363-8 \
     WifiResDeviceXT2363-9
