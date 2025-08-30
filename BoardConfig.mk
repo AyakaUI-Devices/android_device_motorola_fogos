@@ -24,7 +24,7 @@ TARGET_BOOTLOADER_BOARD_NAME := fogos
 
 # Kernel
 BOARD_KERNEL_CMDLINE += androidboot.hab.product=fogos
-TARGET_KERNEL_CONFIG := vendor/fogos-qgki-inline_defconfig
+TARGET_KERNEL_CONFIG += vendor/ext_config/moto-holi-fogos.config
 
 # Kernel Modules
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/configs/modules.load))
@@ -45,8 +45,8 @@ TARGET_PRODUCT_PROP += $(DEVICE_PATH)/properties/product.prop
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 90
 
 # AVB
-BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := 16
-BOARD_AVB_ROLLBACK_INDEX := 16
+# BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := 16
+# BOARD_AVB_ROLLBACK_INDEX := 16
 
 # Security Patch
 BOOT_SECURITY_PATCH := 2025-03-01

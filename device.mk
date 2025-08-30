@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Inherit from motorola sm6375-common
-$(call inherit-product, device/motorola/sm6375-common/common.mk)
-
 TARGET_SCREEN_DENSITY := 280
 
 # AAPT
@@ -82,5 +79,8 @@ $(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/*.rc),\
 $(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
         $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
         
+# Inherit from motorola sm6375-common
+$(call inherit-product, device/motorola/sm6375-common/common.mk)
+    
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/fogos/fogos-vendor.mk)

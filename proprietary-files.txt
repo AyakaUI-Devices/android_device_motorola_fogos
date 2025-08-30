@@ -45,7 +45,6 @@ vendor/etc/bstconfig/hdrcfg.cfg
 vendor/etc/pwr/PowerFeatureConfig.xml
 vendor/etc/pwr/VideoPowerOptFeature.xml
 vendor/lib/libcamxexternalformatutils.so
-vendor/lib/libcamxexternalformatutils.so
 vendor/lib64/camera/fdconfigpreview.bin
 vendor/lib64/camera/fdconfigpreviewlite.bin
 vendor/lib64/camera/fdconfigvideo.bin
@@ -270,8 +269,8 @@ vendor/lib64/com.fingerprints.extension@1.0.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 
 # HotwordEnrollment
--product/priv-app/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND.apk
--product/priv-app/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND.apk
+product/priv-app/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND.apk
+product/priv-app/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND.apk
 system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
 system_ext/framework/com.android.hotwordenrollment.common.util.jar
 
@@ -297,7 +296,7 @@ vendor/etc/vhw.xml
 
 # Sensors
 vendor/lib64/sensors.moto.so;DISABLE_CHECKELF
-vendor/lib64/sensors.ssc.so;DISABLE_CHECKELF
+vendor/lib64/sensors.ssc.so
 
 # Sensor - configs
 vendor/etc/sensors/config/icm4x6xa.json
