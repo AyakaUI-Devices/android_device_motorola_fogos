@@ -78,6 +78,8 @@ $(foreach DEVICE_SKU, $(DEVICE_SKUS), \
     $(LOCAL_PATH)/permissions/unavail.android.hardware.nfc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(DEVICE_SKU)/unavail.android.hardware.nfc.xml)
 
 # Power
+$(call soong_config_set,power_libperfmgr,mode_extension_lib,//$(LOCAL_PATH):power-ext-fogos)
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json \
     $(LOCAL_PATH)/configs/powerhint-blairpro.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-blairpro.json
