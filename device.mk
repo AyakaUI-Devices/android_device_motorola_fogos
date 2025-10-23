@@ -28,6 +28,7 @@ PRODUCT_PACKAGES += \
     FrameworksResDeviceXT2363-9 \
     ProductFrameworksResDevice \
     SystemUIResDevice \
+    TurboPowerOverlay \
     WifiResDevice \
     WifiResDeviceXT2363-8 \
     WifiResDeviceXT2363-9
