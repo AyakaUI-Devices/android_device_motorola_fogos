@@ -54,6 +54,9 @@ PRODUCT_PACKAGES += \
 
 # Lineage Health
 $(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/input_current_limit)
+$(call soong_config_set,lineage_health,fast_charge_node,/sys/class/qcom-battery/restrict_chg)
+$(call soong_config_set,lineage_health,fast_charge_value_none,1)
+$(call soong_config_set,lineage_health,fast_charge_value_fast_charge,0)
 
 # LiveDisplay
 $(call soong_config_set_bool,livedisplay_sysfs,enable_ab,true)
