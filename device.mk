@@ -52,6 +52,9 @@ PRODUCT_PACKAGES += \
     init.nfc.sec.rc \
     init.oem.fingerprint2.sh
 
+# Lineage Health
+$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/input_current_limit)
+
 # LiveDisplay
 $(call soong_config_set_bool,livedisplay_sysfs,enable_ab,true)
 
