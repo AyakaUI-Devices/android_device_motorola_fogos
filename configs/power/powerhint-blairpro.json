@@ -303,6 +303,16 @@
       "ResetOnInit": true
     },
     {
+      "Name": "DoubleTapToWake",
+      "Path": "/sys/devices/virtual/touchscreen/primary/double_tap_enabled",
+      "Values": [
+        "0",
+        "1"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "PowerHALMainState",
       "Path": "vendor.powerhal.state",
       "Values": [
@@ -472,6 +482,12 @@
       "Node": "CPUBigClusterDownRateLimit",
       "Duration": 0,
       "Value": "20000"
+    },
+    {
+      "PowerHint": "DOUBLE_TAP_TO_WAKE",
+      "Node": "DoubleTapToWake",
+      "Duration": 0,
+      "Value": "1"
     },
     {
       "PowerHint": "INTERACTION",
