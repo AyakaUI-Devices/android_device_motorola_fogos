@@ -35,7 +35,6 @@ vendor/firmware/fs1815.fsm
 
 # Audio libraries
 vendor/lib/libacdbloader.so
-vendor/lib64/libacdbloader.so
 
 # Camera
 vendor/etc/bst_3ddns_1.cfg
@@ -111,16 +110,12 @@ vendor/lib64/libofflinedump.so
 vendor/lib64/libofflinelog.so
 vendor/lib64/libopencv.so
 vendor/lib64/libopestriping.so
-vendor/lib64/libos.so
 vendor/lib64/libportrait_repair_ppl3_ocl.so
-vendor/lib64/libpowercore.so
 vendor/lib64/libqll10.so
 vendor/lib64/libqllengine.so
 vendor/lib64/libremosaic_wrapper.so
 vendor/lib64/libswregistrationalgo.so
-vendor/lib64/libsynx.so
 vendor/lib64/libtfestriping.so
-vendor/lib64/libthreadutils.so
 vendor/lib64/libvidhance.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 vendor/lib64/vendor.qti.hardware.scve.objecttracker@1.0.so
