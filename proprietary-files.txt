@@ -23,7 +23,7 @@ vendor/etc/acdbdata/adsp_avs_config.acdb
 vendor/firmware/fs1815.fsm
 
 # Audio libraries
-vendor/lib/libacdbloader.so
+vendor/lib64/libacdbloader.so
 
 # Camera
 vendor/lib64/camera/fdconfigpreview.bin
