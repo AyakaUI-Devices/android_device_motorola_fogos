@@ -27,7 +27,7 @@ bool setDeviceSpecificMode(Mode type, bool enabled) {
         case Mode::DOUBLE_TAP_TO_WAKE: {
             LOG(INFO) << "Power mode: " << toString(type) << " isDoubleTapEnabled: " << enabled;
 
-            ::android::base::WriteStringToFile(enabled ? "1" : "0", "/sys/class/touchscreen/primary/gesture");
+            ::android::base::WriteStringToFile(enabled ? "1" : "0", "/sys/devices/virtual/touchscreen/primary/double_tap_enabled");
 
             return true;
         }
