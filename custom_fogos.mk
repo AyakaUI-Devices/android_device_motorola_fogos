@@ -14,7 +14,7 @@ $(call inherit-product, device/motorola/fogos/device.mk)
 # Inherit some common PixelOS stuff.
 $(call inherit-product, vendor/custom/config/common_full_phone.mk)
 
-PRODUCT_NAME := flavor_fogos
+PRODUCT_NAME := custom_fogos
 PRODUCT_DEVICE := fogos
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_BRAND := motorola
