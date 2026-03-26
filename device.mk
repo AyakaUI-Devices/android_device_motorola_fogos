@@ -52,9 +52,6 @@ PRODUCT_PACKAGES += \
     init.nfc.sec.rc \
     init.oem.fingerprint2.sh
 
-# LiveDisplay
-$(call soong_config_set_bool,livedisplay_sysfs,enable_ab,true)
-
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc-service.sec \
