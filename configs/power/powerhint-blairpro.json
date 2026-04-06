@@ -25,6 +25,7 @@
       "Name": "CPULittleClusterUpRateLimit",
       "Path": "/sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us",
       "Values": [
+        "0",
         "500",
         "2000"
       ],
@@ -64,6 +65,7 @@
       "Name": "CPUBigClusterUpRateLimit",
       "Path": "/sys/devices/system/cpu/cpu6/cpufreq/schedutil/up_rate_limit_us",
       "Values": [
+        "0",
         "500",
         "2000"
       ],
@@ -372,7 +374,7 @@
       "PowerHint": "INTERACTION",
       "Node": "UclampTAMin",
       "Duration": 0,
-      "Value": "50"
+      "Value": "100"
     },
     {
       "PowerHint": "INTERACTION",
@@ -463,7 +465,7 @@
       "PowerHint": "INTERACTIVE",
       "Node": "CPULittleClusterUpRateLimit",
       "Duration": 0,
-      "Value": "500"
+      "Value": "0"
     },
     {
       "PowerHint": "INTERACTIVE",
@@ -475,7 +477,7 @@
       "PowerHint": "INTERACTIVE",
       "Node": "CPUBigClusterUpRateLimit",
       "Duration": 0,
-      "Value": "500"
+      "Value": "0"
     },
     {
       "PowerHint": "INTERACTIVE",
@@ -626,6 +628,24 @@
       "Node": "GPUMinFreq",
       "Duration": 0,
       "Value": "900000000"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "CPULittleClusterMinFreq",
+      "Duration": 0,
+      "Value": "9999999"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampTALatency",
+      "Duration": 0,
+      "Value": "1"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "GPUForceRailOn",
+      "Duration": 0,
+      "Value": "1"
     },
     {
       "PowerHint": "Flipendo",
