@@ -12,7 +12,14 @@ include device/motorola/sm6375-common/BoardConfigCommon.mk
 TARGET_BOOTLOADER_BOARD_NAME := fogos
 
 # HIDL
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE += \
+    $(DEVICE_PATH)/manifest.xml
+
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    vendor/lunaris/dolby/vintf/dolby_framework_compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += \
+    vendor/lunaris/dolby/vintf/dolby_manifest.xml
+
 ODM_MANIFEST_SKUS += b d dn n
 ODM_MANIFEST_B_FILES := $(DEVICE_PATH)/sku/manifest_b.xml
 ODM_MANIFEST_D_FILES := $(DEVICE_PATH)/sku/manifest_d.xml
@@ -52,3 +59,4 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := 28
 
 # inherit from the proprietary version
 include vendor/motorola/fogos/BoardConfigVendor.mk
+include vendor/lunaris/dolby/BoardConfigDolby.mk
