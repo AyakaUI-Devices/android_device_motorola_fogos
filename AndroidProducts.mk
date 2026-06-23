@@ -5,9 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/yaap_fogos.mk
-
-COMMON_LUNCH_CHOICES := \
-    yaap_fogos-user \
-    yaap_fogos-userdebug \
-    yaap_fogos-eng
+    $(LOCAL_DIR)/statix_fogos.mk

@@ -306,7 +306,7 @@
     },
     {
       "Name": "DoubleTapToWake",
-      "Path": "/sys/devices/virtual/touchscreen/primary/double_tap_enabled",
+      "Path": "/sys/class/touchscreen/primary/gesture",
       "Values": [
         "0",
         "1"

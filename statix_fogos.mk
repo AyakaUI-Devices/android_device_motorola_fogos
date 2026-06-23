@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2024 The LineageOS Project
+# Copyright (C) 2023 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -11,19 +11,17 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from fogos device
 $(call inherit-product, device/motorola/fogos/device.mk)
 
-# Inherit some common YAAP stuff.
-$(call inherit-product, vendor/yaap/config/common_full_phone.mk)
+# Inherit some common StatiXOS stuff.
+$(call inherit-product, vendor/statix/config/common.mk)
+$(call inherit-product, vendor/statix/config/gsm.mk)
 
-PRODUCT_NAME := yaap_fogos
+# StatiX Flags
+TARGET_USES_BLUR := true
+
+PRODUCT_NAME := statix_fogos
 PRODUCT_DEVICE := fogos
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto g34 5G
-
+TARGET_BOOT_ANIMATION_RES := 720
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    DeviceProduct=fogos_g \
-    BuildDesc="fogos_g-user 14 U1UGS34.23-110-23-2 7dcf6d release-keys"
-
-BUILD_FINGERPRINT := motorola/fogos_g/fogos:11/U1UGS34.23-110-23-2/7dcf6d:user/release-keys
