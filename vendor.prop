@@ -1,3 +1,7 @@
+# Audio
+persist.vendor.audio.fluence.voicecomm=false
+persist.vendor.audio.voicecall.speaker.stereo=true
+
 # Camera
 persist.vendor.camera.physical.num=3
 
