@@ -20,10 +20,8 @@ PRODUCT_MANUFACTURER := motorola
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto g34 5G
 
-# Ayaka Configs.
-AYAKA_MAINTAINER := whyakari
-WITH_GMS := true
-IS_OFFICIAL := true
+# configs.
+ASCP_MAINTAINER := whyakari
 WITH_KSU := true
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
