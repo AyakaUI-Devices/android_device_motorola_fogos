@@ -4,4 +4,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/ayaka_fogos.mk
+    $(LOCAL_DIR)/custom_fogos.mk
