@@ -4,6 +4,9 @@ on post-fs-data
     chmod 0644 /data/vendor/radio/bluetooth_sar
     chown radio /data/vendor/radio/bluetooth_sar
 
+    # load touch chipone
+    write /sys/bus/spi/drivers/chipone-tddi/bind spi0.0
+
 on boot
     # vibrator hal need to access this sysfs node for AF noise issue
     chown system system /sys/devices/platform/soc/soc:mot,cam-actuator/onekey_actuator
@@ -31,6 +34,10 @@ on boot
 on fs
     insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/rbs_fod_mmi.ko
 
+on late-fs
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/chipone_tddi_v2_mmi.ko
+    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/ilitek_v3_mmi.ko
+
 on late-init
     insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
     insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
@@ -56,10 +63,6 @@ on property:vendor.bluetooth.sar_state=disconnect
 
 on property:sys.boot_completed=1
     start capsense_reset
-
-on init
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/chipone_tddi_v2_mmi.ko
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/ilitek_v3_mmi.ko
 
 on property:dev.bootcomplete=1 && property:ro.vendor.hw.ram=4GB
     write /sys/block/dm-0/queue/read_ahead_kb 128
