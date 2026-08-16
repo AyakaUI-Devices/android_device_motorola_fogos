@@ -11,19 +11,25 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from fogos device
 $(call inherit-product, device/motorola/fogos/device.mk)
 
-# Inherit some common PixelOS stuff.
-$(call inherit-product, vendor/custom/config/common_full_phone.mk)
+# Inherit some common Lineage stuff.
+TARGET_DISABLE_EPPE := true
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-PRODUCT_NAME := ayaka_fogos
+PRODUCT_NAME := lineage_fogos
 PRODUCT_DEVICE := fogos
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto g34 5G
 
-# Ayaka Configs.
-AYAKA_MAINTAINER := whyakari
-WITH_GMS := true
-IS_OFFICIAL := true
+# AxionOS stuff
+TARGET_INCLUDE_AXFX := false
+TARGET_ENABLE_BLUR := true
+AXION_CAMERA_REAR_INFO := 50,2
+AXION_CAMERA_FRONT_INFO := 16
+AXION_MAINTAINER := Hen
+AXION_PROCESSOR := Snapdragon_695
+
+# kernel
 WITH_KSU := true
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola

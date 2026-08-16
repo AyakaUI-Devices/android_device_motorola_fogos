@@ -24,6 +24,18 @@ $(call inherit-product, device/motorola/sm6375-common/common.mk)
 # Dolby Lunaris
 $(call inherit-product, vendor/lunaris/dolby/dolby.mk)
 
+# AxionOS stuff.
+# safely disable libperfmgr without breaking boot (set to true)
+TARGET_DISABLES_LIBPERF ?= false
+TARGET_NEEDS_DOZE_FIX := false
+PERF_GOV_SUPPORTED := true
+PERF_DEFAULT_GOV := schedutil
+PERF_ANIM_OVERRIDE := true
+TORCH_STR_SUPPORTED := true
+HBM_SUPPORTED := true
+HBM_NODE := /sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm
+TARGET_SUPPORTED_REFRESH_RATES := 60,90,120
+
 # Overlays
 PRODUCT_PACKAGES += \
     FrameworksResDevice \

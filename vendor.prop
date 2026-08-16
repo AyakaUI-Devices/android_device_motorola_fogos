@@ -12,6 +12,10 @@ ro.vendor.display.svi=1
 vendor.display.svi.config=1
 vendor.display.svi.config_path=/vendor/etc/SVIConfig.xml
 
+# ScrollOptimizer
+persist.sys.perf.scroll_opt=true
+persist.sys.perf.scroll_opt.heavy_app=1
+
 # Fingerprint
 vendor.false_touch_quality=38
 
