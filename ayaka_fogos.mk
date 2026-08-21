@@ -11,14 +11,20 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from fogos device
 $(call inherit-product, device/motorola/fogos/device.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common AyakaUI stuff.
+$(call inherit-product, vendor/custom/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_fogos
+PRODUCT_NAME := ayaka_fogos
 PRODUCT_DEVICE := fogos
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto g34 5G
+
+# Ayaka stuff.
+AYAKA_MAINTAINER := whyakari
+WITH_GMS := true
+IS_OFFICIAL := true
+WITH_KSU := true
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
