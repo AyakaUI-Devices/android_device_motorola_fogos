@@ -12,13 +12,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/motorola/fogos/device.mk)
 
 # Inherit some common StatiXOS stuff.
-$(call inherit-product, vendor/statix/config/common.mk)
-$(call inherit-product, vendor/statix/config/gsm.mk)
+$(call inherit-product, vendor/pdroid/config/common.mk)
+$(call inherit-product, vendor/pdroid/config/gsm.mk)
 
 # StatiX Flags
 TARGET_USES_BLUR := true
 
-PRODUCT_NAME := statix_fogos
+PRODUCT_NAME := pdroid_fogos
 PRODUCT_DEVICE := fogos
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_BRAND := motorola

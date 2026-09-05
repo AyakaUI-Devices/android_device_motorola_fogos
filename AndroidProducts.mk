@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/statix_fogos.mk
+    $(LOCAL_DIR)/pdroid_fogos.mk
