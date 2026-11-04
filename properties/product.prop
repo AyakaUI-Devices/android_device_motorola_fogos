@@ -1,3 +1,13 @@
-# Esim menu
-esim.enable_esim_system_ui_by_default=true
-masterclear.allow_retain_esim_profiles_after_fdr=true
+aaudio.hw_burst_min_usec=2000
+aaudio.mmap_exclusive_policy=2
+af.fast_track_multiplier=1
+audio.deep_buffer.media=true
+audio.record.delay=100
+audio.sys.mute.latency.factor=2
+audio.sys.noisy.broadcast.delay=500
+audio.sys.offload.pstimeout.secs=3
+audio.sys.routing.latency=0
+audio.timecheck.timeout_duration_ms=8000
+media.stagefright.audio.deep=false
+ro.audio.monitorRotation=true
+ro.audio.monitorWindowRotation=true
