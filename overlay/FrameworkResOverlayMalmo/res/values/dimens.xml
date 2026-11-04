@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2022 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <dimen name="rounded_corner_radius_top">66.0px</dimen>
+
+    <dimen name="rounded_corner_radius_bottom">60.0px</dimen>
+
+    <dimen name="rounded_corner_content_padding">11.0px</dimen>
+
+    <dimen name="keyguard_indication_margin_bottom">15dp</dimen>
+
+    <dimen name="status_bar_height_portrait">105.0px</dimen>
+
+    <dimen name="status_bar_padding_top_portrait">20.0px</dimen>
+
+    <dimen name="status_bar_padding_start">8.0dip</dimen>
+
+    <dimen name="status_bar_padding_end">0dp</dimen>
+
+</resources>

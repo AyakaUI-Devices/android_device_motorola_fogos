@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2022 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <array name="config_autoBrightnessLevels">
+        <item>1</item>
+        <item>2</item>
+        <item>5</item>
+        <item>10</item>
+        <item>29</item>
+        <item>50</item>
+        <item>90</item>
+        <item>100</item>
+        <item>150</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>800</item>
+        <item>1000</item>
+        <item>1300</item>
+        <item>1500</item>
+        <item>1600</item>
+        <item>1800</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>8000</item>
+    </array>
+
+    <bool name="config_setColorTransformAccelerated">true</bool>
+
+    <array name="config_autoBrightnessDisplayValuesNits">
+        <item>3</item>
+        <item>10</item>
+        <item>20</item>
+        <item>50</item>
+        <item>70</item>
+        <item>85</item>
+        <item>110</item>
+        <item>130</item>
+        <item>150</item>
+        <item>180</item>
+        <item>180</item>
+        <item>180</item>
+        <item>180</item>
+        <item>210</item>
+        <item>210</item>
+        <item>210</item>
+        <item>220</item>
+        <item>225</item>
+        <item>225</item>
+        <item>350</item>
+        <item>400</item>
+        <item>400</item>
+        <item>400</item>
+        <item>400</item>
+    </array>
+
+    <array name="config_screenBrightnessBacklight">
+        <item>0</item>
+        <item>2</item>
+        <item>6</item>
+        <item>13</item>
+        <item>32</item>
+        <item>45</item>
+        <item>54</item>
+        <item>70</item>
+        <item>83</item>
+        <item>96</item>
+        <item>115</item>
+        <item>134</item>
+        <item>140</item>
+        <item>143</item>
+        <item>223</item>
+        <item>255</item>
+    </array>
+
+   <array name="config_autoBrightnessLcdBacklightValues">
+        <item>10</item>
+        <item>20</item>
+        <item>40</item>
+        <item>70</item>
+        <item>110</item>
+        <item>160</item>
+        <item>200</item>
+        <item>255</item>
+    </array>
+
+    <array name="config_screenBrightnessNits">
+        <item>0</item>
+        <item>3</item>
+        <item>10</item>
+        <item>20</item>
+        <item>50</item>
+        <item>70</item>
+        <item>85</item>
+        <item>110</item>
+        <item>130</item>
+        <item>150</item>
+        <item>180</item>
+        <item>210</item>
+        <item>220</item>
+        <item>225</item>
+        <item>350</item>
+        <item>400</item>
+    </array>
+
+    <integer name="config_autoBrightnessBrighteningLightDebounce">500</integer>
+    <integer name="config_autoBrightnessDarkeningLightDebounce">500</integer>
+
+    <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+
+    <integer name="config_defaultRefreshRate">0</integer>
+
+    <integer name="config_defaultPeakRefreshRate">120</integer>
+
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">true</bool>
+
+    <array name="config_biometric_sensors" translatable="false" >
+        <item>0:2:15</item> </array>
+
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+
+    <bool name="doze_display_state_supported">false</bool>
+
+    <bool name="doze_suspend_display_state_supported">false</bool>
+
+    <integer name="config_screenBrightnessDim">2</integer>
+
+    <bool name="config_supportDoubleTapWake">true</bool>
+
+    <integer name="config_screenBrightnessSettingMinimum">2</integer>
+
+    <array name="config_longPressVibePattern">
+        <item>0</item>
+        <item>45</item>
+    </array>
+
+    <array name="config_virtualKeyVibePattern">
+        <item>0</item>
+        <item>45</item>
+    </array>
+
+    <array name="config_keyboardTapVibePattern">
+        <item>0</item>
+        <item>30</item>
+    </array>
+
+    <array name="config_safeModeEnabledVibePattern">
+        <item>0</item>
+        <item>0</item>
+        <item>94</item>
+    </array>
+
+    <array name="config_scrollBarrierVibePattern">
+        <item>0</item>
+        <item>15</item>
+        <item>30</item>
+        <item>15</item>
+    </array>
+
+    <string-array name="config_disableApksUnlessMatchedSku_apk_list" translatable="false">
+        <item>com.android.nfc</item>
+        <item>com.android.se</item>
+        <item>com.android.apps.tag</item>
+        <item>com.google.android.tag</item>
+    </string-array>
+
+    <string-array name="config_disableApkUnlessMatchedSku_skus_list" translatable="false">
+        <item>XT2363-1</item>
+        <item>XT2363-2</item>
+        <item>XT2363-3</item>
+    </string-array>
+
+    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+
+    <bool name="config_dozeAlwaysOnDisplayAvailable">false</bool>
+
+    <bool name="config_dozeAlwaysOnEnabled">false</bool>
+
+    <string name="config_mms_user_agent" translatable="false">motog345g</string>
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://uaprof.motorola.com/phoneconfig/motov1/Profile/motov1.rdf</string>
+
+     <array name="config_sfps_sensor_props" translatable="false">
+        <item>@array/config_sfps_sensor_props_0</item>
+    </array>
+    <array name="config_sfps_sensor_props_0" translatable="false">
+        <item>local:4630946747577212033</item> <item>720</item> <item>600</item> <item>200</item> </array>
+
+    <bool name="config_is_powerbutton_fps" translatable="false">true</bool>
+
+    <bool name="config_performantAuthDefault">true</bool>
+
+    <bool name="config_telephony5gStandalone">true</bool>
+
+    <bool name="config_telephony5gNonStandalone">true</bool>
+
+    <string-array name="config_telephonyEuiccDeviceCapabilities">
+        <item>gsm,9</item>
+        <item>utran,9</item>
+        <item>eutran,15</item>
+    </string-array>
+
+    <integer-array name="non_removable_euicc_slots" />
+
+    <integer name="config_num_physical_slots">2</integer>
+
+    <string-array name="radioAttributes" translatable="false">
+        <item>"1,1"</item>
+        <item>"0,1"</item>
+        <item>"7,1"</item>
+    </string-array>
+
+    <bool name="config_automatic_brightness_available">true</bool>
+
+    <bool name="config_unplugTurnsOnScreen">true</bool>
+
+    <array name="config_availableColorModes">
+        <item>0</item> <item>1</item> <item>2</item> <item>3</item> </array>
+
+    <bool name="config_hotswapCapable">true</bool>
+
+    <item name="config_screenBrightnessDozeFloat" format="float" type="dimen">0.06667</item>
+
+    <bool name="skip_restoring_network_selection">true</bool>
+
+    <bool name="config_showNavigationBar">true</bool>
+
+    <bool name="config_dozeAfterScreenOffByDefault">true</bool>
+
+    <bool name="config_enableNewAutoSelectNetworkUI">true</bool>
+
+    <bool name="config_enableWifiDisplay">true</bool>
+
+    <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
+
+    <bool name="config_stkNoAlphaUsrCnf">false</bool>
+
+    <bool name="config_device_volte_available">true</bool>
+
+    <bool name="config_carrier_volte_available">true</bool>
+
+    <bool name="config_device_vt_available">true</bool>
+
+    <bool name="config_device_wfc_ims_available">true</bool>
+
+    <bool name="config_switch_phone_on_voice_reg_state_change">false</bool>
+
+    <bool name="config_supportAudioSourceUnprocessed">true</bool>
+
+    <bool name="config_sustainedPerformanceModeSupported">true</bool>
+
+    <integer-array name="config_clockTickVibePattern">
+        <item>0</item>
+        <item>40</item>
+    </integer-array>
+
+    <item name="config_screenBrightnessSettingMinimumFloat" type="dimen">0.00784313</item>
+
+    <item name="config_screenBrightnessSettingDefaultFloat" type="dimen">0.4509804</item>
+
+    <item name="config_screenBrightnessDimFloat" type="dimen">0.00784313</item>
+
+    <string name="config_mainBuiltInDisplayCutout" translatable="false">
+        M 335,44
+        a 25,25 0 1 0 50,0
+        a 25,25 0 1 0 -50,0
+        Z
+        @left
+    </string>
+
+    <string name="config_mainBuiltInDisplayCutoutRectApproximation" translatable="false">
+        M -25 0
+        L -25 86
+        L 25 86
+        L 25 0
+        Z
+    </string>
+
+    <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
+
+    <integer name="config_defaultRefreshRateInZone">90</integer>
+
+    <dimen name="status_bar_height_default">28dp</dimen>
+
+    <dimen name="status_bar_height_landscape">28dp</dimen>
+</resources>
