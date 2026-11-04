@@ -11,7 +11,6 @@ PRODUCT_SHIPPING_API_LEVEL := 33
 
 # Hardware packages
 PRODUCT_PACKAGES += \
-    CarrierConfigOverlayFogos \
     FrameworkResOverlayFogos \
     FrameworksResFogos \
     FrameworksResXT2363-8 \
@@ -27,7 +26,6 @@ PRODUCT_PACKAGES += \
     SystemUIOverlayFogos \
     SystemUIResFogos \
     Tag \
-    TelephonyOverlayFogos \
     WifiOverlayFogos \
     android.hardware.biometrics.fingerprint@2.1.vendor \
     android.hardware.nfc-service.sec \
