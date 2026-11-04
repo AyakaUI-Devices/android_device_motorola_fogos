@@ -1,12 +1,6 @@
-<!--
-    Input:
-        manifest_n.xml
--->
-<manifest version="2.0" type="device">
-    <hal format="hidl" override="true">
-        <name>android.hardware.nfc</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::INfc/default</fqname>
+<manifest version="7.0" type="device">
+    <hal format="aidl" override="true">
+        <name>android.hardware.secure_element</name>
     </hal>
     <hal format="hidl" override="true">
         <name>android.hardware.radio</name>
@@ -69,5 +63,16 @@
         <name>vendor.qti.hardware.radio.uim_remote_server</name>
         <transport>hwbinder</transport>
         <fqname>@1.0::IUimRemoteServiceServer/uimRemoteServer0</fqname>
+    </hal>
+    <hal format="aidl" override="true">
+        <name>android.se.omapi</name>
+    </hal>
+    <hal format="aidl" override="true">
+        <name>vendor.qti.hardware.qteeconnector</name>
+    </hal>
+    <hal format="hidl" override="true">
+        <name>android.hardware.nfc</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.2::INfc/default</fqname>
     </hal>
 </manifest>

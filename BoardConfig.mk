@@ -8,13 +8,6 @@ include device/motorola/sm6375-common/BoardConfigCommon.mk
 TARGET_BOOTLOADER_BOARD_NAME := fogos
 BOARD_KERNEL_CMDLINE += androidboot.hab.product=fogos androidboot.hab.cid=50 androidboot.hab.csv=8
 
-# HIDL
-ODM_MANIFEST_SKUS += b d dn n
-ODM_MANIFEST_B_FILES := $(DEVICE_PATH)/sku/manifest_b.xml
-ODM_MANIFEST_D_FILES := $(DEVICE_PATH)/sku/manifest_d.xml
-ODM_MANIFEST_DN_FILES := $(DEVICE_PATH)/sku/manifest_dn.xml
-ODM_MANIFEST_N_FILES := $(DEVICE_PATH)/sku/manifest_n.xml
-
 # Display
 TARGET_SCREEN_DENSITY := 280
 TARGET_RECOVERY_UI_MARGIN_HEIGHT := 90
@@ -36,5 +29,14 @@ BOOT_SECURITY_PATCH := 2025-03-01
 VENDOR_SECURITY_PATCH := 2026-09-01
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := 16
 BOARD_AVB_ROLLBACK_INDEX := 16
+
+# VINTF
+DEVICE_MANIFEST_FILE += \
+    $(DEVICE_PATH)/manifest.xml \
+    $(DEVICE_PATH)/manifest_camera.xml \
+    $(DEVICE_PATH)/manifest_fingerprint.xml
+ODM_MANIFEST_SKUS := b d dn n
+$(foreach sku,$(ODM_MANIFEST_SKUS), \
+    $(eval ODM_MANIFEST_$(call to-upper,$(sku))_FILES := $(DEVICE_PATH)/sku/manifest_$(sku).xml))
 
 include vendor/motorola/fogos/BoardConfigVendor.mk
