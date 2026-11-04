@@ -1,32 +1,18 @@
-#
-# Copyright (C) 2022 The LineageOS Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# SPDX-License-Identifier: Apache-2.0
 
-# Camera extension for torch slider
-$(call soong_config_set,libcameraservice,ext_lib,//$(LOCAL_PATH):libcameraservice_extension.fogos)
+$(call inherit-product, device/motorola/sm6375-common/common.mk)
 
-
+# Display
 TARGET_SCREEN_DENSITY := 280
-
-# AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 280dpi
 PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
+PRODUCT_SHIPPING_API_LEVEL := 33
 
-# Resource Overlays
+# Hardware packages
 PRODUCT_PACKAGES += \
+    CarrierConfigOverlayFogos \
+    FrameworkResOverlayFogos \
     FrameworksResFogos \
     FrameworksResXT2363-8 \
     NfcOverlayFogos \
@@ -35,18 +21,34 @@ PRODUCT_PACKAGES += \
     SettingsOverlayXT2363-3 \
     SettingsOverlayXT2363-5 \
     SettingsOverlayXT2363-8 \
+    SettingsProviderResFogos \
+    SettingsProviderResXT2363-8 \
     SettingsResFogos \
-    SystemUIResFogos
+    SystemUIOverlayFogos \
+    SystemUIResFogos \
+    Tag \
+    TelephonyOverlayFogos \
+    WifiOverlayFogos \
+    android.hardware.biometrics.fingerprint@2.1.vendor \
+    android.hardware.nfc-service.sec \
+    audio.primary.fogos \
+    com.android.nfc_extras \
+    com.motorola.hardware.biometric.fingerprint@1.0.vendor \
+    libcameraservice_extension.fogos
 
 # Camera
-PRODUCT_PACKAGES += \
-    libgui_shim_vendor
+$(call soong_config_set,libcameraservice,ext_lib,//$(LOCAL_PATH):libcameraservice_extension.fogos)
+PRODUCT_PACKAGES += libcamera2ndk_vendor
 
-# Fingerprint
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1.vendor \
-    com.motorola.hardware.biometric.fingerprint@1.0.vendor
+# Audio
+PRODUCT_VENDOR_PROPERTIES += ro.hardware.audio.primary=fogos
+PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/fogos-legacy-audio
+PRODUCT_COPY_FILES += \
+    vendor/motorola/fogos/proprietary/vendor/etc/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_blair/audio_platform_info_intcodec.xml
+$(foreach f,mixer_paths.xml audio_platform_info.xml audio_io_policy.conf, \
+    $(eval PRODUCT_COPY_FILES += vendor/motorola/fogos/proprietary/vendor/etc/$(f):$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_blair/$(f)))
 
+# Input
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
     $(LOCAL_PATH)/configs/idc/uinput_nav.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput_nav.idc \
@@ -58,40 +60,21 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/power/powerhint-blairpro.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-blairpro.json
 
 # NFC
-PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.2-service.samsung \
-    com.android.nfc_extras \
-    Tag
+$(foreach sku,b d, \
+    $(foreach f,$(notdir $(wildcard $(LOCAL_PATH)/permissions/unavail.*.xml)), \
+        $(eval PRODUCT_COPY_FILES += $(LOCAL_PATH)/permissions/$(f):$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/$(f))))
 
-DEVICE_SKUS := b d
-
+# Touch firmware
 PRODUCT_COPY_FILES += \
-$(foreach DEVICE_SKU, $(DEVICE_SKUS), \
-    $(LOCAL_PATH)/permissions/unavail.android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(DEVICE_SKU)/unavail.android.hardware.nfc.hce.xml \
-    $(LOCAL_PATH)/permissions/unavail.android.hardware.nfc.hcef.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(DEVICE_SKU)/unavail.android.hardware.nfc.hcef.xml \
-    $(LOCAL_PATH)/permissions/unavail.android.hardware.nfc.uicc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(DEVICE_SKU)/unavail.android.hardware.nfc.uicc.xml \
-    $(LOCAL_PATH)/permissions/unavail.android.hardware.nfc.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(DEVICE_SKU)/unavail.android.hardware.nfc.xml)
-
-# Virtual A/B
-TARGET_IS_VAB := true
-
-# Shipping API
-PRODUCT_SHIPPING_API_LEVEL := 30
-
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    vendor/motorola/fogos/proprietary/vendor/firmware/ILITEK_FW:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/firmware/ILITEK_FW
 
 # Init
-$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/hw/*.rc),\
-        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/$(notdir $f)))
-$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/*.rc),\
-        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/$(notdir $f)))
-$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
-        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/hw/*.rc), \
+    $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/$(notdir $f)))
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh), \
+    $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
 
-# Inherit from motorola sm6375-common
-$(call inherit-product, device/motorola/sm6375-common/common.mk)
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += $(LOCAL_PATH)
 
-# Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/fogos/fogos-vendor.mk)

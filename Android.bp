@@ -1,2 +1,8 @@
+// SPDX-License-Identifier: Apache-2.0
+
 soong_namespace {
+    imports: [
+        "device/motorola/sm6375-common",
+        "hardware/motorola",
+    ],
 }
