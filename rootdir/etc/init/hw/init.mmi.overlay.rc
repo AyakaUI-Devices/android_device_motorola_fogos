@@ -1,41 +1,65 @@
-# sec_nfc
-import /vendor/etc/init/hw/init.nfc.sec.rc
+
+# This is for Moto fogos device init rc file
+
+##import /vendor/etc/init/hw/init.vendor.st21nfc.rc
+
+on early-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules zram
+
+on early-init && property:ro.boot.secure_hardware=0
+    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules con_dfpar
+
+on late-init
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules mmi-smbcharger-iio
+
+
+on fs
+    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules chipone_tddi_v2_mmi ilitek_v3_mmi
+    #zram wb
+    mount_all /vendor/etc/fstab.qcom.zram --early
+
+on post-fs && property:ro.boot.secure_hardware=0
+    write /proc/con_dfpar/con_dfpar_enable 1
 
 on post-fs
-    # "Tap to wake" gesture
-    chown root input /sys/class/sensors/dt-gesture/enable
-    chmod 0660 /sys/class/sensors/dt-gesture/enable
-    chown root input /sys/class/sensors/dt-gesture/poll_delay
-    chmod 0660 /sys/class/sensors/dt-gesture/poll_delay
+   # "Tap to wake" gesture
+   chown root input /sys/class/sensors/dt-gesture/enable
+   chmod 0660 /sys/class/sensors/dt-gesture/enable
+   chown root input /sys/class/sensors/dt-gesture/poll_delay
+   chmod 0660 /sys/class/sensors/dt-gesture/poll_delay
 
 on post-fs
-    chown system system /sys/devices/platform/soc/4804000.ufshc/clkgate_enable
-    chown system system /sys/devices/platform/soc/4804000.ufshc/devfreq/4804000.ufshc/min_freq
+   chown system system /sys/devices/platform/soc/4804000.ufshc/clkgate_enable
+   chown system system /sys/devices/platform/soc/4804000.ufshc/devfreq/4804000.ufshc/min_freq
+   start vendor.copy_qc_cert
+
+on early-boot
+    chown system system /dev/goodix_fp
+    chmod 0664 /dev/goodix_fp
+    mkdir /data/vendor/gf_data 0770 system system
+    mkdir /data/vendor/goodix 0770 system system
+    mkdir /data/vendor/goodix/gf_data 0770 system system
+    mkdir /mnt/vendor/persist/goodix 0770 system system
+    # for jiiov
+    chmod 0664 /dev/jiiov_fp
+    chown system root /dev/jiiov_fp
+    mkdir /data/vendor/fingerprint 0770 system system
+    mkdir /data/vendor/fingerprint/factory_test 0770 system system
+
+    mkdir /data/vendor/jiiov 0770 system system
+    mkdir /data/vendor/jiiov/factory_test 0770 system system
+    mkdir /mnt/vendor/persist/jiiov 0770 system system
+
+    # Permission for Health Storage HAL
+    chown system system /sys/devices/platform/soc/4804000.ufshc/ufshid/trigger
+    chown system system /sys/devices/platform/soc/4804000.ufshc/ufshid/color
 
 on post-fs-data
-
-    chown system system /sys/devices/platform/soc/soc:fm_wcn39x0/elna_en
-    # touch api
-    chown system system /sys/class/touchscreen/primary/interpolation
-    chmod 0660 /sys/class/touchscreen/primary/interpolation
-    chown system system /sys/class/touchscreen/primary/first_filter
-    chmod 0660 /sys/class/touchscreen/primary/first_filter
-    chown system system /sys/class/touchscreen/primary/edge
-    chmod 0660 /sys/class/touchscreen/primary/edge
-    # change permission for stylus
-    chown system system /sys/class/touchscreen/primary/palm_settings
-
     # Change ownership and permission for bq25960-standalone factory testing
     chown system system /sys/class/power_supply/bq25960-standalone/voltage_now
     chown system system /sys/bus/iio/devices/iio:device6/in_index_bq25980_cp_enabled_input
     chmod 0644 /sys/class/power_supply/bq25960-standalone/voltage_now
     chmod 0664 /sys/bus/iio/devices/iio:device6/in_index_bq25980_cp_enabled_input
-
-    # Add for Egis Fod fingerprint
-    mkdir /data/vendor/egis 0770 system system
-    mkdir /mnt/vendor/persist/egis 0770 system system
-    mkdir /data/vendor/tzstorage/egis 0770 system system
-    mkdir /data/vendor/egis/cqa  0770 system system
 
     # Add for after-sale ois gyro cal
     mkdir /mnt/vendor/persist/camera/gyro_compat 0770 vendor_tcmd camera
@@ -47,25 +71,67 @@ on post-fs-data
     chown system system /sys/class/backlight/panel0-backlight/brightness
     chown system system /sys/class/drm/card0-DSI-1/panelName
     chown system system /sys/class/drm/card0-DSI-1/panelId
-    chown system system /d/dri/0/debug/motUtil
-    chmod 0666 /d/dri/0/debug/motUtil;
     chmod 0666 /sys/class/backlight/panel0-backlight/brightness
     chmod 0666 /sys/class/drm/card0-DSI-1/panelName
     chmod 0666 /sys/class/drm/card0-DSI-1/panelId
+
+
+on early-init
+   # MMI sys temp
+   exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules mmi_sys_temp
+
+on boot
+    # Touch game mode control
+    chown system system /sys/class/touchscreen/primary/rotate
+    chmod 0660 /sys/class/touchscreen/primary/rotate
+    chown system system /sys/class/touchscreen/primary/interpolation
+    chmod 0660 /sys/class/touchscreen/primary/interpolation
+    chown system system /sys/class/touchscreen/primary/sample
+    chmod 0660 /sys/class/touchscreen/primary/sample
+    chown system system /sys/class/touchscreen/primary/edge
+    chmod 0660 /sys/class/touchscreen/primary/edge
+    chown system system /sys/class/touchscreen/primary/sensitivity
+    chmod 0660 /sys/class/touchscreen/primary/sensitivity
+    chown system system /sys/class/touchscreen/primary/gesture
+    chmod 0660 /sys/class/touchscreen/primary/gesture
+    chown system system /sys/class/touchscreen/primary/stowed
+    chmod 0660 /sys/class/touchscreen/primary/stowed
+    chown system system /sys/class/touchscreen/primary/pocket_mode
+    chmod 0660 /sys/class/touchscreen/primary/pocket_mode
+    # Touch goodix TP
+
+    chmod 0660 /sys/class/capsense/mode
+
+    #change vibrator gain node file access permission
+    chown system system /sys/class/leds/vibrator/gain
+    chmod 0660 /sys/class/leds/vibrator/gain
+    chown system system /sys/class/leds/vibrator/strength
+    chmod 0660 /sys/class/leds/vibrator/strength
+    chown system system /sys/class/leds/vibrator/rtp
+    chmod 0660 /sys/class/leds/vibrator/rtp
+    chown system system /sys/class/leds/vibrator/rtp_interface
+    chmod 0660 /sys/class/leds/vibrator/rtp_interface
 
     #bluetooth sar
     write /data/vendor/radio/bluetooth_sar disable
     chmod 0644 /data/vendor/radio/bluetooth_sar
     chown radio /data/vendor/radio/bluetooth_sar
 
-on early-init
-    insmod /vendor/lib/modules/leds_aw99703.ko
-    insmod /vendor/lib/modules/leds_lm3697.ko
+    # max readyfor apps
+    setprop ro.vendor.config.max_readyfor_apps 4
 
-on boot
-    # vibrator hal need to access this sysfs node for AF noise issue
-    chown system system /sys/devices/platform/soc/soc:mot,cam-actuator/onekey_actuator
-    chmod 0660 /sys/devices/platform/soc/soc:mot,cam-actuator/onekey_actuator
+    # Change ownership for capsensor
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch0/enable
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch0/poll_delay
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch1/enable
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch1/poll_delay
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch2/enable
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch2/poll_delay
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch3/enable
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch3/poll_delay
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch4/enable
+    chown root input /sys/class/sensors/Moto\ CapSense\ Ch4/poll_delay
+
     # change permission for capsensor
     chown system system /sys/class/capsense/reset
     chown system system /sys/class/capsense/int_state
@@ -76,54 +142,70 @@ on boot
     chmod 0660 /sys/class/capsense/int_state
     chmod 0660 /sys/class/capsense/reg
     chmod 0660 /sys/class/capsense/fw_download_status
-    # touch
-    chown system system /sys/class/touchscreen/primary/interpolation
-    chmod 0660 /sys/class/touchscreen/primary/interpolation
-    chown system system /sys/class/touchscreen/primary/sample
-    chmod 0660 /sys/class/touchscreen/primary/sample
-    chown system system /sys/class/touchscreen/primary/edge
-    chmod 0660 /sys/class/touchscreen/primary/edge
-    chown system system /sys/class/touchscreen/primary/gesture
-    chmod 0660 /sys/class/touchscreen/primary/gesture
     chmod 0660 /sys/class/capsense/mode
-    chmod 0666 /dev/gtp_tools
 
-    chmod 0662 /sys/class/leds/vibrator/state
-    chmod 0666 /sys/class/leds/vibrator/activate
-    chmod 0662 /sys/class/leds/vibrator/duration
     write /proc/sys/vm/dirty_background_bytes 26214400
     write /proc/sys/vm/dirty_bytes 104857600
 
-on fs
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/rbs_fod_mmi.ko
+service vendor.netconfig /vendor/bin/vendor_netconfig
+    class main
+    user root
+    group root system
+    oneshot
+    disabled
 
-on boot && property:ro.vendor.mot.gki.path=5.4-gki
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/nfc_i2c.ko
-
-on late-init
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
-    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/${ro.vendor.mot.gki.path} moto_mm moto_swap
+on boot && property:ro.bootmode=mot-factory
+    start vendor.netconfig
 
 on early-boot
-    # Add for egis fingerprint
-    chown system system /dev/esfp0
-    chmod 0664 /dev/esfp0
-
+    # allow TCMD to access cci
     chown system camera /dev/cci_intf
     chmod 0660 /dev/cci_intf
 
+on property:ro.boot.mode=mot-factory
+    chmod 0666 /dev/cci_intf
+
+    # Add for OIS hall data
+    mkdir /data/vendor/camera/ois_hall_data 0770 vendor_tcmd camera
+
+on boot
+    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules qpnp_adaptive_charge
+
 on charger
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/qpnp_adaptive_charge.ko
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/mmi-smbcharger-iio.ko
+    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules qpnp_adaptive_charge mmi-smbcharger-iio
 
 on post-fs-data && property:ro.boot.mode=charger
     setprop persist.vendor.hvdcp_opti.start 1
 
 service capsense_reset /vendor/bin/capsense_reset
-    class core
+   class core
+   user system
+   group system input
+   task_profiles HighEnergySaving ProcessCapacityLow LowIoPriority TimerSlackHigh
+   disabled
+
+on property:sys.boot_completed=1
+    start capsense_reset
+#    insmod /vendor/lib/modules/moto_mmap_fault.ko
+    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules moto_mmap_fault wakeup_sources
+
+   # Set adaptive charging perms for HAL
+   chown system system /sys/module/qpnp_adaptive_charge/parameters/upper_limit
+   chown system system /sys/module/qpnp_adaptive_charge/parameters/lower_limit
+
+on property:sys.boot_completed=1
+    chmod 0666 /sys/class/power_supply/mmi_battery/device/force_chg_usb_suspend
+    chmod 0666 /sys/class/power_supply/mmi_battery/device/force_chg_iusb
+    chmod 0666 /sys/class/power_supply/mmi_battery/device/force_chg_ibatt
+    chmod 0666 /sys/class/power_supply/mmi_battery/device/force_chg_auto_enable
+    chmod 0666 /sys/class/power_supply/mmi_battery/device/force_chg_fail_clear
+    chmod 0666 /sys/class/power_supply/bq25960-standalone/device/force_chg_auto_enable
+
+service vendor.copy_qc_cert /vendor/bin/copy_qc_cert.sh
+    class main
     user system
-    group system input
+    group root system
+    oneshot
     disabled
 
 on property:vendor.bluetooth.sar_state=connect
@@ -132,35 +214,34 @@ on property:vendor.bluetooth.sar_state=connect
 on property:vendor.bluetooth.sar_state=disconnect
     write /data/vendor/radio/bluetooth_sar disconnect
 
-on property:sys.boot_completed=1
-    start capsense_reset
-    chown system system /sys/class/touchscreen/primary/stowed
-    chmod 0660 /sys/class/touchscreen/primary/stowed
+on moto-charger
+    #Enable UFS clock scaling back
+    write /sys/bus/platform/devices/4804000.ufshc/clkscale_enable 1
+    #Enable UFS auto_hibern8 back
+    write /sys/bus/platform/devices/4804000.ufshc/auto_hibern8 5000
+    #Enable UFS clock gating back
+    write /sys/bus/platform/devices/4804000.ufshc/clkgate_enable 1
 
-on init
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/chipone_tddi_v2_mmi.ko
-    insmod /vendor/lib/modules/${ro.vendor.mot.gki.path}/ilitek_v3_mmi.ko
+on property:ro.boot.secure_hardware=1 && property:ro.build.type=user && property:vendor.post_boot.parsed=1
+    write /proc/sys/walt/panic_on_walt_bug 0x4544DE18
 
-on property:dev.bootcomplete=1 && property:ro.vendor.hw.ram=4GB
-    write /sys/block/dm-0/queue/read_ahead_kb 128
-    write /sys/block/dm-1/queue/read_ahead_kb 128
-    write /sys/block/dm-2/queue/read_ahead_kb 128
-    write /sys/block/dm-3/queue/read_ahead_kb 128
-    write /sys/block/dm-4/queue/read_ahead_kb 128
-    write /sys/block/dm-5/queue/read_ahead_kb 128
-    write /sys/block/${dev.mnt.dev.root}/queue/read_ahead_kb 128
-    write /sys/block/${dev.mnt.dev.system_ext}/queue/read_ahead_kb 128
-    write /sys/block/${dev.mnt.dev.product}/queue/read_ahead_kb 128
-    write /sys/block/${dev.mnt.dev.vendor}/queue/read_ahead_kb 128
-    write /sys/block/${dev.mnt.dev.data}/queue/read_ahead_kb 128
-    write /sys/block/${dev.mnt.rootdisk.data}/queue/read_ahead_kb 128
-
+# Blair Pro SKUs (higher GPU top level)
 on init && property:ro.boot.hardware.sku="XT2363-8"
     setprop vendor.powerhal.config powerhint-blairpro.json
 
 on init && property:ro.boot.hardware.sku="XT2363-9"
     setprop vendor.powerhal.config powerhint-blairpro.json
 
-on property:sys.boot_completed=1 && property:vendor.hw.fingerprint.status=fail
-  stop goodix_hal
-  stop fps_hal
+# Compressed swap. early-init unloads zram and nothing loads it again
+# (mount_all ignores swap entries, fstab.qcom has none, mmd zram is off),
+# so the phone ran with no swap. Reload it and enable the stock 75% zram.
+on property:sys.boot_completed=1
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules zram
+    write /sys/block/zram0/comp_algorithm lz4
+    swapon_all /vendor/etc/fstab.qcom.zram
+
+# Halve the WALT window (16ms -> 8ms at HZ=250) so frequency follows load
+# within one 120Hz frame. Qualcomm's perf HAL does this on stock; libperfmgr
+# does not. Runs after init.kernel.post_boot-blair.sh has applied its tunables.
+on property:vendor.post_boot.parsed=1
+    write /proc/sys/walt/sched_ravg_window_nr_ticks 2
