@@ -55,8 +55,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/power/powerhint-blairpro.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-blairpro.json \
-    $(LOCAL_PATH)/configs/power/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    $(LOCAL_PATH)/configs/power/powerhint-blairpro.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-blairpro.json
 
 # NFC
 PRODUCT_PACKAGES += \
