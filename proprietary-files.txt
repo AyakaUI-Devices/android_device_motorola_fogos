@@ -1,40 +1,46 @@
-# Unpinned blobs from fogos_g-user 15 V1UG35H.75-14-3 6c77f4 release-keys
-
-# ACDB
-vendor/etc/acdbdata/Bluetooth_cal.acdb
-vendor/etc/acdbdata/General_cal.acdb
-vendor/etc/acdbdata/Global_cal.acdb
-vendor/etc/acdbdata/Handset_cal.acdb
-vendor/etc/acdbdata/Hdmi_cal.acdb
-vendor/etc/acdbdata/Headset_cal.acdb
-vendor/etc/acdbdata/Speaker_cal.acdb
-vendor/etc/acdbdata/adsp_avs_config.acdb
-vendor/etc/acdbdata/nn_ns_models/candidate__2.7.1.31__3.0.0__eai_1.10_enpu1.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.0.0_0.1__3.0.0_0.0__eai_1.00.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.2.0_0.1__3.0.0_0.0__eai_1.00.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.6.1_0.0__eai_v1.10.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.6.3_0.0__3.0.0_0.0__eai_1.10.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.6.3_0.0__3.0.0_0.0__eai_1.10_enpu1.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.6.3_0.0__3.0.0_0.0__eai_1.36_enpu2.pmd
-vendor/etc/acdbdata/nn_ns_models/fai__2.7.4_0.0__3.0.0_0.0__eai_1.10_enpu1.pmd
-vendor/etc/acdbdata/nn_vad_models/fai_3.0.0_0.0_eai_1.00.pmd
-
-# Audio configs
-vendor/etc/audio_ext_spkr.conf
-vendor/etc/audio_io_policy.conf
-vendor/etc/audio_platform_info.xml
-vendor/etc/audio_policy_volumes.xml
-vendor/etc/default_volume_tables.xml
-vendor/etc/mixer_paths.xml
-vendor/etc/sound_trigger_mixer_paths.xml
-vendor/etc/sound_trigger_platform_info.xml
+# Extracted from fogos_g V1UGS35H.75-14-9-3-1-4
 
 # Audio firmware
-vendor/firmware/aw963xx_reg_0.bin
 vendor/firmware/fs1815.fsm
 
-# Audio libraries
-vendor/lib/libacdbloader.so
+# Gatekeeper - from fogos stock, must match the gatekeeper TA in fogos TZ
+vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
+vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
+vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
+
+# Graphics Adreno Firmware
+modem/image/a615_zap.b00:vendor/firmware/a615_zap.b00
+modem/image/a615_zap.b01:vendor/firmware/a615_zap.b01
+modem/image/a615_zap.b02:vendor/firmware/a615_zap.b02
+modem/image/a615_zap.mdt:vendor/firmware/a615_zap.mdt
+vendor/firmware/a619_gmu.bin
+vendor/firmware/a630_sqe.fw
+vendor/firmware/a660_gmu.bin
+vendor/firmware/a660_sqe.fw
+vendor/firmware/a660_zap.b00
+vendor/firmware/a660_zap.b01
+vendor/firmware/a660_zap.b02
+vendor/firmware/a660_zap.elf
+vendor/firmware/a660_zap.mdt
+vendor/gpu/kbc/sequence_manifest.bin
+vendor/gpu/kbc/unified_kbcs_32.bin
+vendor/gpu/kbc/unified_kbcs_64.bin
+vendor/gpu/kbc/unified_ksqs.bin
+
+# Keymaster - from fogos stock, must match the Keymaster 4 TA in fogos TZ.
+vendor/bin/hw/android.hardware.keymaster@4.1-service-qti
+vendor/etc/init/android.hardware.keymaster@4.1-service-qti.rc
+vendor/lib64/libkeymasterdeviceutils.so
+vendor/lib64/libkeymasterprovision.so
+vendor/lib64/libkeymasterutils.so
+vendor/lib64/libqtikeymaster4.so
+
+# Hardware SKU mapping
+vendor/etc/vhw.xml
+
+# Sensors
+vendor/lib64/sensors.moto.so;DISABLE_CHECKELF
+vendor/lib64/sensors.ssc.so
 
 # Camera
 vendor/etc/bst_3ddns_1.cfg
@@ -43,7 +49,6 @@ vendor/etc/bst_3ddns_3.cfg
 vendor/etc/bstconfig/hdrcfg.cfg
 vendor/etc/pwr/PowerFeatureConfig.xml
 vendor/etc/pwr/VideoPowerOptFeature.xml
-vendor/lib/libcamxexternalformatutils.so
 vendor/lib64/camera/fdconfigpreview.bin
 vendor/lib64/camera/fdconfigpreviewlite.bin
 vendor/lib64/camera/fdconfigvideo.bin
@@ -263,49 +268,6 @@ vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-fpc2.rc
 vendor/lib64/com.fingerprints.extension@1.0.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 
-# HotwordEnrollment
-product/priv-app/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND/HotwordEnrollmentOKGoogleHEXAGON_WIDEBAND.apk
-product/priv-app/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND/HotwordEnrollmentXGoogleHEXAGON_WIDEBAND.apk
-system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
-system_ext/framework/com.android.hotwordenrollment.common.util.jar
-
-# MotCamera4
-system/app/MotoSignature2App/MotoSignature2App.apk;PRESIGNED
-system/app/MotoSignatureApp/MotoSignatureApp.apk;PRESIGNED
-system/etc/permissions/com.motorola.frameworks.core.addon.xml
-system/etc/permissions/com.motorola.motosignature.xml
-system/etc/permissions/moto-core_services.xml
-system/framework/com.motorola.frameworks.core.addon.jar
-system/framework/com.motorola.motosignature.jar
-system/framework/moto-core_services.jar
-product/app/MotCamera3AI/MotCamera3AI.apk:system_ext/app/MotCamera3AI/MotCamera3AI.apk;PRESIGNED
-product/etc/permissions/com.motorola.camera3.content.ai.xml:system_ext/etc/permissions/com.motorola.camera3.content.ai.xml
-product/etc/permissions/com.motorola.camera3.lens.xml:system_ext/etc/permissions/com.motorola.camera3.lens.xml
-product/etc/permissions/com.motorola.camera3.fogos.xml:system_ext/etc/permissions/com.motorola.camera3.fogos.xml
-product/etc/permissions/com.motorola.camera3.xml:system_ext/etc/permissions/com.motorola.camera3.xml
-product/etc/permissions/deviceowner-configuration-com.motorola.camera3.xml:system_ext/etc/permissions/deviceowner-configuration-com.motorola.camera3.xml
-product/etc/permissions/privapp-permissions-com.motorola.camera3.xml:system_ext/etc/permissions/privapp-permissions-com.motorola.camera3.xml
-product/etc/sysconfig/hiddenapi-whitelist-com.motorola.camera3.xml:system_ext/etc/sysconfig/hiddenapi-whitelist-com.motorola.camera3.xml
-product/priv-app/MotCamera4/MotCamera4.apk:system_ext/priv-app/MotCamera4/MotCamera4.apk;PRESIGNED|9ce3c95cc55f7a15041ab73493f0dde8c675459d
-system_ext/etc/permissions/com.motorola.camera.desktop.xml
-system_ext/etc/permissions/com.motorola.imager.v.xml
-system_ext/etc/permissions/com.motorola.imagertuning.v.xml
-system_ext/etc/permissions/com.motorola.imagertuning.v.fogos.xml
-system_ext/etc/permissions/com.motorola.libimgTuner.xml
-system_ext/etc/permissions/privapp-permissions-com.motorola.imagertuning.v.xml
-system_ext/etc/permissions/privapp-permissions-com.motorola.motcameradesktop.xml
-system_ext/etc/public.libraries-motocameradesktop.txt
-system_ext/etc/public.libraries-motoimagetuner.txt
-system_ext/etc/sysconfig/hiddenapi-whitelist-com.motorola.motcameradesktop.xml
-system_ext/framework/com.motorola.hardware.camera.desktop.jar
-system_ext/framework/com.motorola.imager.v.jar
-system_ext/framework/com.motorola.libimgTuner.jar
-system_ext/lib/libimgTuner_jni.motoimagetuner.so
-system_ext/lib64/libimgTuner_jni.motoimagetuner.so
-system_ext/priv-app/ImagerTuning-V/ImagerTuning-V.apk;PRESIGNED
-system/lib/motorola.hardware.camera.imgtuner.aidl-V1-ndk.so
-system/lib64/motorola.hardware.camera.imgtuner.aidl-V1-ndk.so
-
 # NFC
 vendor/etc/libnfc-PN557.conf
 vendor/etc/libnfc-SN220-UICC.conf
@@ -322,13 +284,6 @@ vendor/etc/nfc_calibration.txt
 vendor/firmware/sec_s3nrn4v_firmware.bin
 vendor/etc/sec_s3nrn4v_hwreg.bin
 vendor/etc/sec_s3nrn4v_swreg.bin
-
-# OEM
-vendor/etc/vhw.xml
-
-# Sensors
-vendor/lib64/sensors.moto.so;DISABLE_CHECKELF
-vendor/lib64/sensors.ssc.so
 
 # Sensor - configs
 vendor/etc/sensors/config/icm4x6xa.json
@@ -467,3 +422,40 @@ vendor/firmware/chipone_firmware.bin
 vendor/firmware/csot_focal_test_limits.ini
 vendor/firmware/focaltech-csot-ft3681-22-0000-fogos.bin
 vendor/firmware/goodix-tm-gt9916S-23051702-646483c4-fogos.bin
+
+# Camera C2D dependency
+vendor/lib64/libC2D2.so
+
+# Camera VPP interface dependency
+vendor/lib64/vendor.qti.hardware.vpp@1.2.so
+
+# Fogos sensor transport dependency
+vendor/lib64/libssc.so:vendor/lib64/libssc-fogos.so
+
+# Fogos sensor protobuf dependency
+vendor/lib64/libsnsapi.so:vendor/lib64/libsnsapi-fogos.so
+
+# APR/Q6 ACDB, configs and loader for audio.primary.fogos
+vendor/etc/acdbdata/Bluetooth_cal.acdb
+vendor/etc/acdbdata/General_cal.acdb
+vendor/etc/acdbdata/Global_cal.acdb
+vendor/etc/acdbdata/Handset_cal.acdb
+vendor/etc/acdbdata/Hdmi_cal.acdb
+vendor/etc/acdbdata/Headset_cal.acdb
+vendor/etc/acdbdata/Speaker_cal.acdb
+vendor/etc/acdbdata/adsp_avs_config.acdb
+vendor/etc/acdbdata/nn_ns_models/candidate__2.7.1.31__3.0.0__eai_1.10_enpu1.pmd
+vendor/etc/acdbdata/nn_ns_models/fai__2.6.1_0.0__eai_v1.10.pmd
+vendor/etc/acdbdata/nn_ns_models/fai__2.6.3_0.0__3.0.0_0.0__eai_1.10.pmd
+vendor/etc/acdbdata/nn_ns_models/fai__2.6.3_0.0__3.0.0_0.0__eai_1.36_enpu2.pmd
+vendor/etc/acdbdata/nn_ns_models/fai__2.7.4_0.0__3.0.0_0.0__eai_1.10_enpu1.pmd
+vendor/etc/audio_io_policy.conf
+vendor/etc/audio_platform_info.xml
+vendor/etc/mixer_paths.xml
+vendor/etc/sound_trigger_mixer_paths.xml
+vendor/etc/sound_trigger_platform_info.xml
+vendor/lib64/libacdb-fts.so
+vendor/lib64/libacdbloader.so
+vendor/lib64/libacdbrtac.so
+vendor/lib64/libadiertac.so
+vendor/lib64/libaudcal.so
