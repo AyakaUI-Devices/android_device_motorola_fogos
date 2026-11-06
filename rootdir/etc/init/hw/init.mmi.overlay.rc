@@ -3,12 +3,6 @@
 
 ##import /vendor/etc/init/hw/init.vendor.st21nfc.rc
 
-on early-init
-    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules zram
-
-on early-init && property:ro.boot.secure_hardware=0
-    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules con_dfpar
-
 on late-init
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules mmi-smbcharger-iio
 
@@ -17,9 +11,6 @@ on fs
     exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules chipone_tddi_v2_mmi ilitek_v3_mmi
     #zram wb
     mount_all /vendor/etc/fstab.qcom.zram --early
-
-on post-fs && property:ro.boot.secure_hardware=0
-    write /proc/con_dfpar/con_dfpar_enable 1
 
 on post-fs
    # "Tap to wake" gesture
@@ -79,10 +70,6 @@ on post-fs-data
     rm /data/vendor/radio/read_modem_efs
     write /data/vendor/radio/read_modem_efs 0
     chmod 0666 /data/vendor/radio/read_modem_efs
-
-on early-init
-   # MMI sys temp
-   exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules mmi_sys_temp
 
 on boot
     # Touch game mode control
@@ -151,9 +138,6 @@ on boot
     chmod 0660 /sys/class/capsense/fw_download_status
     chmod 0660 /sys/class/capsense/mode
 
-    write /proc/sys/vm/dirty_background_bytes 26214400
-    write /proc/sys/vm/dirty_bytes 104857600
-
 service vendor.netconfig /vendor/bin/vendor_netconfig
     class main
     user root
@@ -193,12 +177,6 @@ service capsense_reset /vendor/bin/capsense_reset
 
 on property:sys.boot_completed=1
     start capsense_reset
-#    insmod /vendor/lib/modules/moto_mmap_fault.ko
-    exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules moto_mmap_fault wakeup_sources
-
-   # Set adaptive charging perms for HAL
-   chown system system /sys/module/qpnp_adaptive_charge/parameters/upper_limit
-   chown system system /sys/module/qpnp_adaptive_charge/parameters/lower_limit
 
 on property:sys.boot_completed=1
     chmod 0666 /sys/class/power_supply/mmi_battery/device/force_chg_usb_suspend
