@@ -32,7 +32,6 @@ BOARD_AVB_ROLLBACK_INDEX := 16
 
 # VINTF
 DEVICE_MANIFEST_FILE += \
-    $(DEVICE_PATH)/manifest.xml \
     $(DEVICE_PATH)/manifest_camera.xml \
     $(DEVICE_PATH)/manifest_fingerprint.xml
 ODM_MANIFEST_SKUS := b d dn n
