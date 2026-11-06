@@ -388,11 +388,6 @@ vendor/firmware/csot_focal_test_limits.ini
 vendor/firmware/focaltech-csot-ft3681-22-0000-fogos.bin
 vendor/firmware/goodix-tm-gt9916S-23051702-646483c4-fogos.bin
 
-# Camera C2D dependency
-vendor/lib64/libC2D2.so
-
-# Camera VPP interface dependency
-vendor/lib64/vendor.qti.hardware.vpp@1.2.so
 
 # APR/Q6 ACDB, configs and loader for audio.primary.fogos
 vendor/etc/acdbdata/Bluetooth_cal.acdb
