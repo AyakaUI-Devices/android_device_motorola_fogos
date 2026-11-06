@@ -7,10 +7,6 @@ vendor/firmware/fs1815.fsm
 # Hardware SKU mapping
 vendor/etc/vhw.xml
 
-# Sensors
-vendor/lib64/sensors.moto.so;DISABLE_CHECKELF
-vendor/lib64/sensors.ssc.so
-
 # Camera
 vendor/etc/bst_3ddns_1.cfg
 vendor/etc/bst_3ddns_2.cfg
@@ -397,12 +393,6 @@ vendor/lib64/libC2D2.so
 
 # Camera VPP interface dependency
 vendor/lib64/vendor.qti.hardware.vpp@1.2.so
-
-# Fogos sensor transport dependency
-vendor/lib64/libssc.so:vendor/lib64/libssc-fogos.so
-
-# Fogos sensor protobuf dependency
-vendor/lib64/libsnsapi.so:vendor/lib64/libsnsapi-fogos.so
 
 # APR/Q6 ACDB, configs and loader for audio.primary.fogos
 vendor/etc/acdbdata/Bluetooth_cal.acdb

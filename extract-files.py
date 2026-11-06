@@ -15,19 +15,10 @@ namespace_imports = [
 ]
 
 blob_fixups: blob_fixups_user_type = {
-    'vendor/lib64/sensors.ssc.so': blob_fixup()
-        .replace_needed('libsnsapi.so', 'libsnsapi-fogos.so')
-        .replace_needed('libssc.so', 'libssc-fogos.so')
-        .add_needed('libcompiler_rt.so'),
-    'vendor/lib64/libssc-fogos.so': blob_fixup()
-        .fix_soname()
-        .replace_needed('libsnsapi.so', 'libsnsapi-fogos.so'),
     'vendor/lib64/libmot_chi_desktop_helper.so': blob_fixup()
         .add_needed('libgui_buffer_shim_vendor.so'),
     'vendor/lib64/hw/camera.qcom.so': blob_fixup()
-        .replace_needed('libsnsapi.so', 'libsnsapi-fogos.so'),
-    'vendor/lib64/libsnsapi-fogos.so': blob_fixup()
-        .fix_soname(),
+        .replace_needed('libsnsapi.so', 'libsnsapi-stock.so'),
     ('vendor/lib64/camera/components/com.mot.node.c2d.so', 'vendor/lib64/camera/components/com.qti.node.dewarp.so', 'vendor/lib64/camera/components/com.vidhance.node.ica.so', 'vendor/lib64/camera/components/com.vidhance.node.processing.so'): blob_fixup()
         .replace_needed('libui.so', 'libui-v34.so'),
 }  # fmt: skip
