@@ -25,12 +25,8 @@ PRODUCT_PACKAGES += \
     SettingsResFogos \
     SystemUIOverlayFogos \
     SystemUIResFogos \
-    Tag \
     WifiOverlayFogos \
     android.hardware.biometrics.fingerprint@2.1.vendor \
-    android.hardware.nfc-service.sec \
-    audio.primary.fogos \
-    com.android.nfc_extras \
     com.motorola.hardware.biometric.fingerprint@1.0.vendor \
     libcameraservice_extension.fogos
 
@@ -39,8 +35,6 @@ $(call soong_config_set,libcameraservice,ext_lib,//$(LOCAL_PATH):libcameraservic
 PRODUCT_PACKAGES += libcamera2ndk_vendor
 
 # Audio
-PRODUCT_VENDOR_PROPERTIES += ro.hardware.audio.primary=fogos
-PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/fogos-legacy-audio
 PRODUCT_COPY_FILES += \
     vendor/motorola/fogos/proprietary/vendor/etc/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_blair/audio_platform_info_intcodec.xml
 $(foreach f,mixer_paths.xml audio_platform_info.xml audio_io_policy.conf, \
@@ -57,7 +51,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/power/powerhint-blairpro.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint-blairpro.json
 
-# NFC
+# NFC: the b and d SKUs have no NFC controller.
 $(foreach sku,b d, \
     $(foreach f,$(notdir $(wildcard $(LOCAL_PATH)/permissions/unavail.*.xml)), \
         $(eval PRODUCT_COPY_FILES += $(LOCAL_PATH)/permissions/$(f):$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_$(sku)/$(f))))
