@@ -12,6 +12,10 @@ PRODUCT_AAPT_PREF_CONFIG := 280dpi
 PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 PRODUCT_SHIPPING_API_LEVEL := 33
 
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
+
 # Hardware packages
 PRODUCT_PACKAGES += \
     FrameworkResOverlayFogos \

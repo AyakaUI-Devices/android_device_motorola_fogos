@@ -204,8 +204,6 @@
         <item>eutran,15</item>
     </string-array>
 
-    <integer-array name="non_removable_euicc_slots" />
-
     <integer name="config_num_physical_slots">2</integer>
 
     <string-array name="radioAttributes" translatable="false">
