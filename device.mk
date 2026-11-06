@@ -2,6 +2,9 @@
 
 $(call inherit-product, device/motorola/sm6375-common/common.mk)
 
+# Dalvik heap, as on the tested fogos builds
+$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+
 # Display
 TARGET_SCREEN_DENSITY := 280
 PRODUCT_AAPT_CONFIG := normal
