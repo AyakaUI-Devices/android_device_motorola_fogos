@@ -1,10 +1,7 @@
-debug.sf.touch_boost_refreshrate=90
 persist.vendor.audio.fluence.voicecomm=true
 persist.vendor.audio.stereo_speaker.spin.enable=true
 persist.vendor.camera.physical.num=3
 persist.vendor.sensors.enable.mag_filter=true
 persist.vendor.sensors.mot_tap=true
-persist.vendor.sensors.support_direct_channel=false
-ro.surface_flinger.set_touch_timer_ms=1000
 ro.vendor.sensors.prox_for_call=true
 ro.vendor.usb.support_analog_audio=false
