@@ -70,9 +70,4 @@
     <hal format="aidl" override="true">
         <name>vendor.qti.hardware.qteeconnector</name>
     </hal>
-    <hal format="hidl" override="true">
-        <name>android.hardware.nfc</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::INfc/default</fqname>
-    </hal>
 </manifest>
