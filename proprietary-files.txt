@@ -3,10 +3,6 @@
 # Audio firmware
 vendor/firmware/fs1815.fsm
 
-# Gatekeeper - from fogos stock, must match the gatekeeper TA in fogos TZ
-vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
-vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
-vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
 # Graphics Adreno Firmware
 modem/image/a615_zap.b00:vendor/firmware/a615_zap.b00
@@ -26,14 +22,6 @@ vendor/gpu/kbc/sequence_manifest.bin
 vendor/gpu/kbc/unified_kbcs_32.bin
 vendor/gpu/kbc/unified_kbcs_64.bin
 vendor/gpu/kbc/unified_ksqs.bin
-
-# Keymaster - from fogos stock, must match the Keymaster 4 TA in fogos TZ.
-vendor/bin/hw/android.hardware.keymaster@4.1-service-qti
-vendor/etc/init/android.hardware.keymaster@4.1-service-qti.rc
-vendor/lib64/libkeymasterdeviceutils.so
-vendor/lib64/libkeymasterprovision.so
-vendor/lib64/libkeymasterutils.so
-vendor/lib64/libqtikeymaster4.so
 
 # Hardware SKU mapping
 vendor/etc/vhw.xml
