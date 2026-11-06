@@ -4,15 +4,17 @@
 import os
 
 from camera.gpu_layout import fix_gpu_layout
+
 from extract_utils.fixups_blob import blob_fixup, blob_fixups_user_type
+from extract_utils.fixups_lib import lib_fixups
 from extract_utils.main import ExtractUtils, ExtractUtilsModule
 
 namespace_imports = [
     'device/motorola/fogos',
     'device/motorola/sm6375-common',
-    'hardware/lineage/compat',
     'hardware/motorola',
     'hardware/qcom-caf/sm6375-6.1',
+    'vendor/motorola/sm6375-common',
 ]
 
 blob_fixups: blob_fixups_user_type = {
@@ -36,6 +38,7 @@ module = ExtractUtilsModule(
     'fogos',
     'motorola',
     blob_fixups=blob_fixups,
+    lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
     add_firmware_proprietary_file=False,
     skip_main_proprietary_file=os.environ.get('SM6375_BLOB_SOURCE') == 'malmo',
