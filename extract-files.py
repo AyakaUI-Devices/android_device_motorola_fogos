@@ -3,6 +3,7 @@
 
 import os
 
+from camera.gpu_layout import fix_gpu_layout
 from extract_utils.fixups_blob import blob_fixup, blob_fixups_user_type
 from extract_utils.main import ExtractUtils, ExtractUtilsModule
 
@@ -15,6 +16,14 @@ namespace_imports = [
 ]
 
 blob_fixups: blob_fixups_user_type = {
+    (
+        'vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-fpc',
+        'vendor/lib64/libacdbloader.so',
+        'vendor/lib64/libgf_ca.so',
+    ): blob_fixup()
+        .replace_needed('libion.so', 'libion_qsecom_shim.so'),
+    'vendor/lib64/camera/components/com.qti.node.gpu.so': blob_fixup()
+        .call(fix_gpu_layout),
     'vendor/lib64/libmot_chi_desktop_helper.so': blob_fixup()
         .add_needed('libgui_buffer_shim_vendor.so'),
     'vendor/lib64/hw/camera.qcom.so': blob_fixup()
