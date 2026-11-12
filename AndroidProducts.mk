@@ -1,9 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/halcyon_fogos.mk \
-    $(LOCAL_DIR)/lineage_fogos.mk
+    $(LOCAL_DIR)/ayaka_fogos.mk
 
 COMMON_LUNCH_CHOICES := \
-    halcyon_fogos-cp2a-userdebug \
-    lineage_fogos-cp2a-userdebug
+    ayaka_fogos-cp2a-userdebug
