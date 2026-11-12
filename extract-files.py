@@ -33,14 +33,17 @@ blob_fixups: blob_fixups_user_type = {
     ('vendor/lib64/camera/components/com.mot.node.c2d.so', 'vendor/lib64/camera/components/com.qti.node.dewarp.so', 'vendor/lib64/camera/components/com.vidhance.node.ica.so', 'vendor/lib64/camera/components/com.vidhance.node.processing.so'): blob_fixup()
         .replace_needed('libui.so', 'libui-v34.so'),
     # The 6.1 base DT registers the charger ADC channel as chg-skin-therm,
-    # so Moto's chg_therm zone never appears.
+    # so Moto's chg_therm zone never appears. thermal-engine-v2 also reads
+    # one offset per input sensor without bounds checks, so give the
+    # three-sensor FRONT_TEMP and BACK_TEMP an offset for each sensor.
     (
         'vendor/etc/thermal-engine-fogos.conf',
         'vendor/etc/thermal-engine-fogos-camera.conf',
         'vendor/etc/thermal-engine-fogos-game-normal.conf',
         'vendor/etc/thermal-engine-fogos-game-perf.conf',
     ): blob_fixup()
-        .regex_replace(r'\bchg_therm\b', 'chg-skin-therm'),
+        .regex_replace(r'\bchg_therm\b', 'chg-skin-therm')
+        .regex_replace(r'(?ms)(^\[(?:FRONT|BACK)_TEMP\][^\[]*?^offsets[ \t]+)0(?=\r?$)', r'\g<1>0 0 0'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
