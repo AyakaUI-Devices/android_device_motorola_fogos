@@ -222,9 +222,6 @@ on moto-charger
     #Enable UFS clock gating back
     write /sys/bus/platform/devices/4804000.ufshc/clkgate_enable 1
 
-on property:ro.boot.secure_hardware=1 && property:ro.build.type=user && property:vendor.post_boot.parsed=1
-    write /proc/sys/walt/panic_on_walt_bug 0x4544DE18
-
 # Blair Pro SKUs (higher GPU top level)
 on init && property:ro.boot.hardware.sku="XT2363-8"
     setprop vendor.powerhal.config powerhint-blairpro.json
