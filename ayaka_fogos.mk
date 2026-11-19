@@ -5,6 +5,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/motorola/fogos/device.mk)
 $(call inherit-product, vendor/custom/config/common_full_phone.mk)
 
+# Ayaka stuff.
+AYAKA_MAINTAINER := whyakari
+WITH_GMS := true
+IS_OFFICIAL := true
+
 PRODUCT_NAME := ayaka_fogos
 PRODUCT_DEVICE := fogos
 PRODUCT_MANUFACTURER := motorola
