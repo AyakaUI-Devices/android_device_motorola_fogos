@@ -383,12 +383,6 @@
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
-      "Node": "CPULittleClusterMinFreq",
-      "Duration": 0,
-      "Value": "9999999"
-    },
-    {
-      "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "UclampTALatency",
       "Duration": 0,
       "Value": "1"
